@@ -31,15 +31,15 @@ class MainController extends AbstractController
     public function generate(Request $request) : JsonResponse
     {
         switch($request->get('country')){
-            case 'ru': 
-                $generator = new RuGenerator($request->get('seed'), $request->get('page'), $request->get('error-count'), $this->getDoctrine());
-                break;
             case 'by':
                 $generator = new ByGenerator($request->get('seed'), $request->get('page'), $request->get('error-count'), $this->getDoctrine());
                 break;
             case 'us': 
                 $generator = new USGenerator($request->get('seed'), $request->get('page'), $request->get('error-count'), $this->getDoctrine());
                 break;
+            default: 
+                    $generator = new RuGenerator($request->get('seed'), $request->get('page'), $request->get('error-count'), $this->getDoctrine());
+                    break;
         }
         $json = $this->json($generator->getRandomData());
         return $json;

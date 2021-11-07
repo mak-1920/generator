@@ -28,9 +28,6 @@ final class Version20211103201817 extends AbstractMigration
         $this->addSql('CREATE TABLE RuNames (id INT NOT NULL, name VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE RuPatronymic (id INT NOT NULL, patronymic VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE RuSurnames (id INT NOT NULL, surname VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('DROP TABLE ru_names');
-        $this->addSql('DROP TABLE ru_surnames');
-        $this->addSql('DROP TABLE ru_patronymics');
     }
 
     public function down(Schema $schema) : void
@@ -45,8 +42,5 @@ final class Version20211103201817 extends AbstractMigration
         $this->addSql('CREATE TABLE runames (id INT NOT NULL, name VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL)');
         $this->addSql('CREATE TABLE rusurnames (id INT NOT NULL, surname VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE rupatronymics (id INT NOT NULL, patronymic VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('DROP TABLE RuNames');
-        $this->addSql('DROP TABLE RuPatronymic');
-        $this->addSql('DROP TABLE RuSurnames');
     }
 }

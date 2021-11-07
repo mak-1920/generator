@@ -82,6 +82,7 @@ jQuery(function(){
             $(e).find('td').each((j, td) => row.push($(td).text()))
             data.push(row)
         })
+        console.log(data)
         $.ajax({
             url: 'ajax/createcsv',
             type: 'post',

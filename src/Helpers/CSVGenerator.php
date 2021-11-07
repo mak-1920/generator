@@ -5,20 +5,22 @@ namespace App\Helpers;
 class CSVGenerator{
     private $data;
     
-    public function __construct(array $data)
+    public function __construct(?array $data)
     {
         $this->data = $data;
     }
 
     public function createFileAndSave() : array
     {
-        $fileName = 'files/'.time();
-        if(\file_exists($fileName.'.csv')){
+        $shortname = time();
+        
+        if(\file_exists($shortname.'.csv')){
             $i = 0;
-            while(file_exists($fileName.'-'.++$i.'.csv'));
-            $fileName .= "-$i.csv";
+            while(file_exists($shortname.'-'.++$i.'.csv'));
+            $shortname .= "-$i";
         }
-        $fileName .= '.csv';
+        $shortname = 'files\\'.$shortname.'.csv';
+        $fileName = __DIR__.'\\..\\..\\public\\'.$shortname;
 
         $fp = fopen($fileName, 'w');
 
@@ -27,6 +29,6 @@ class CSVGenerator{
 
         fclose($fp);
 
-        return array('fileName' => $fileName); 
+        return array('fileName' => $shortname); 
     }
 }
