@@ -1,0 +1,27 @@
+doctrine:
+    dbal:
+        default_connection: pgsql
+        connections:
+           #Postgresql
+           pgsql:
+                driver:   pdo_pgsql
+                host:     "%psql_database_host%"
+                port:     "%psql_database_port%"
+                dbname:   "%psql_database_name%"
+                user:     "%psql_database_user%"
+                password: "%psql_database_password%"
+                charset:  UTF8
+
+        #mapping_types:
+            #geometry: string
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        entity_managers:
+            default:
+                mappings:
+                    custom_mapping:
+                        type: annotation
+                        prefix: App\Entity
+                        dir: "%kernel.root_dir%\\Entity\\"
+                        is_bundle: false

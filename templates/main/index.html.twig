@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Generator{% endblock %}
+
+{% block filesForPage %}
+    <link rel="stylesheet" href="styles/ionRangeSlider.css" />
+    <link rel="stylesheet" href="styles/ionRangeSliderSkin.css" />
+    <script src="js/ionRangeSlider.min.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<div class="container-sm m-a mt-2 p2">
+    <form id="generate-form">
+        <select class="form-select" name="country">
+            <option value="ru">Russian</option>
+            <option value="by">Belarus</option>
+            <option value="us">USA</option>
+        </select>
+        <div class="m-auto mt-2 p-2 w-100 border-1 rounded-2 border border-gray">
+            <div class="input-group mb-2">
+                <label for="slider-value" class="input-group-text">Numbers of errors:</label>
+                <input type="number" min="0" max="1000" value="0" step="0.25" id="slider-value" class="form-control" name="error-count">
+            </div>
+            <div class="align-self-stretch">
+                <input type="text" id="slider" value="0">
+            </div>
+        </div>
+        <div class="border p-2 my-2 rounded-2">
+            <div class="row w-100 m-auto">
+                <div class="col-10 p-0">
+                    <div class="input-group">
+                        <label for="seed" class="input-group-text">Seed (int)</label>
+                        <input type="number" id="seed" class="form-control" name="seed" value="0" min="0" max="1000000000">
+                    </div>
+                </div>
+                <div class="col-2 p-0">
+                    <button class="btn-primary rounded-2 w-100 h-100" name="generate" id="set-random-seed" type="button">
+                        Random
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="my-2 text-center">
+        <button class="btn-primary rounded-2 py-2 px-3" id="save-csv">
+            Export to CSV
+        </button>
+
+    </div>
+    <table class="table table-striped" id="generation-table">
+        <thead>
+            <tr class="table-primary">
+                <th>#</th>
+                <th>ID</th>
+                <th>FCs</th>
+                <th>Address</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody id="generation-rows"></tbody>
+    </table>
+    <div id="generation-status" class="d-none text-center fs-2 fst-italic mb-3">loading...</div>
+</div>
+
+{% endblock %}
