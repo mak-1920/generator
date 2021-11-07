@@ -6,11 +6,11 @@
 parameters:
     # Postgresl
     psql_database_driver: pdo_pgsql
-    psql_database_host: 127.0.0.1
+    psql_database_host: ec2-18-208-24-104.compute-1.amazonaws.com
     psql_database_port: 5432
-    psql_database_name: generator
-    psql_database_user: postgres
-    psql_database_password: 1
+    psql_database_name: ddvkuqd8gnsmro
+    psql_database_user: iijuxpmskcoroe
+    psql_database_password: e082ba6bef1c9c7a1692281f6af6f7d02f8b66ca14f4b1ae6e5abda442b56693
 services:
     # default configuration for services in *this* file
     _defaults:

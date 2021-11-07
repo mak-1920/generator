@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20211103201817 extends AbstractMigration
+final class Version20211107211857 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,15 +22,18 @@ final class Version20211103201817 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
+        $this->addSql('CREATE SEQUENCE RuAddrSubjects_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE RuNames_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE RuPatronymic_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
         $this->addSql('CREATE SEQUENCE RuSurnames_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE UsNames_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE SEQUENCE UsSurnames_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE TABLE RuAddrSubjects (id INT NOT NULL, name VARCHAR(255) NOT NULL, shortname VARCHAR(10) NOT NULL, code VARCHAR(25) NOT NULL, type VARCHAR(50) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE RuNames (id INT NOT NULL, name VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE RuPatronymic (id INT NOT NULL, patronymic VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE TABLE RuSurnames (id INT NOT NULL, surname VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('DROP TABLE ru_names');
-        $this->addSql('DROP TABLE ru_surnames');
-        $this->addSql('DROP TABLE ru_patronymics');
+        $this->addSql('CREATE TABLE UsNames (id INT NOT NULL, name VARCHAR(25) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE UsSurnames (id INT NOT NULL, surname VARCHAR(25) NOT NULL, PRIMARY KEY(id))');
     }
 
     public function down(Schema $schema) : void
@@ -39,14 +42,17 @@ final class Version20211103201817 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE SCHEMA public');
+        $this->addSql('DROP SEQUENCE RuAddrSubjects_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE RuNames_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE RuPatronymic_id_seq CASCADE');
         $this->addSql('DROP SEQUENCE RuSurnames_id_seq CASCADE');
-        $this->addSql('CREATE TABLE runames (id INT NOT NULL, name VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL)');
-        $this->addSql('CREATE TABLE rusurnames (id INT NOT NULL, surname VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE TABLE rupatronymics (id INT NOT NULL, patronymic VARCHAR(25) NOT NULL, gender VARCHAR(10) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('DROP SEQUENCE UsNames_id_seq CASCADE');
+        $this->addSql('DROP SEQUENCE UsSurnames_id_seq CASCADE');
+        $this->addSql('DROP TABLE RuAddrSubjects');
         $this->addSql('DROP TABLE RuNames');
         $this->addSql('DROP TABLE RuPatronymic');
         $this->addSql('DROP TABLE RuSurnames');
+        $this->addSql('DROP TABLE UsNames');
+        $this->addSql('DROP TABLE UsSurnames');
     }
 }
