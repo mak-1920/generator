@@ -21,7 +21,8 @@ class CSVGenerator{
         }
         $ft = fopen($_SERVER['DOCUMENT_ROOT'].'t', 'w');
         \fwrite($ft, 'test');
-        $fclose($ft);
+        fclose($ft);
+        \var_dump(\file_get_contents($_SERVER['DOCUMENT_ROOT'].'t'));
         echo $_SERVER['DOCUMENT_ROOT'].\PHP_EOL;
         $shortname = 'files/'.$shortname.'.csv';
         $fileName = $_SERVER['DOCUMENT_ROOT'].'/'.$shortname;
