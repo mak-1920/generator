@@ -19,6 +19,7 @@ class CSVGenerator{
             while(file_exists($shortname.'-'.++$i.'.csv'));
             $shortname .= "-$i";
         }
+        fopen('t', 'w');
         $shortname = 'files\\'.$shortname.'.csv';
         $fileName = __DIR__.'\\..\\..\\public\\'.$shortname;
 
