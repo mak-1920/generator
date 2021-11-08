@@ -19,10 +19,10 @@ class CSVGenerator{
             while(file_exists($shortname.'-'.++$i.'.csv'));
             $shortname .= "-$i";
         }
-        fopen('t', 'w');
+        fopen($_SERVER['DOCUMENT_ROOT'].'t', 'w');
         echo $_SERVER['DOCUMENT_ROOT'].\PHP_EOL;
         $shortname = 'files\\'.$shortname.'.csv';
-        $fileName = __DIR__.'\\..\\..\\public\\'.$shortname;
+        $fileName = $_SERVER['DOCUMENT_ROOT'].'\\'.$shortname;
 
         $fp = fopen($fileName, 'w');
 
