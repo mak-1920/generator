@@ -20,7 +20,7 @@ class CSVGenerator{
             $shortname .= "-$i";
         }
         fopen('t', 'w');
-        echo __DIR__.\PHP_EOL;
+        echo $_SERVER['DOCUMENT_ROOT'].\PHP_EOL;
         $shortname = 'files\\'.$shortname.'.csv';
         $fileName = __DIR__.'\\..\\..\\public\\'.$shortname;
 
