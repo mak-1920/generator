@@ -23,6 +23,7 @@ class CSVGenerator{
         echo $_SERVER['DOCUMENT_ROOT'].\PHP_EOL;
         $shortname = 'files\\'.$shortname.'.csv';
         $fileName = $_SERVER['DOCUMENT_ROOT'].'\\'.$shortname;
+        echo $fileName;
 
         $fp = fopen($fileName, 'w');
 
