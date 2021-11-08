@@ -53,4 +53,27 @@ class MainController extends AbstractController
         $generator = new CSVGenerator($request->request->get('data'));
         return $this->json($generator->createFileAndSave());
     }
+
+    /**
+     * @Route("/savecsv")
+     */
+    public function saveCSV(Request $request) : void
+    {
+        $filename = __DIR__.'\\..\\..\\files\\'.$request->get('link').'.csv';
+        echo $filename;
+        if (file_exists($filename)) {
+            if (ob_get_level())
+              ob_end_clean();
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename=' . basename($filename));
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($filename));
+            readfile($filename);
+          }
+          exit;
+    }
 }
